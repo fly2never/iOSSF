@@ -8,6 +8,7 @@
 
 #import "SFRootViewController.h"
 
+// FIXME: SFQuestionDetailViewController not used
 @interface SFQuestionDetailViewController : SFRootViewController
 
 @property (strong, nonatomic)   NSDictionary            *questionInfo;

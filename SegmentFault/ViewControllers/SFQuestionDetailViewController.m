@@ -16,6 +16,7 @@
 
 @property (strong, nonatomic)   SFLocalWebView              *answerView;
 @property (strong, nonatomic)   UIActivityIndicatorView     *indicator;
+// FIXME: unused
 @property (strong, nonatomic)   NSString                    *questionId;
 @property (strong, nonatomic)   SFLocalWebView              *questionView;
 @property (strong, nonatomic)   UITableView                 *tableView;
@@ -44,12 +45,12 @@
         NSString *detailHTML = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil];
         [self.answerView loadHTMLString:[NSString stringWithFormat:detailHTML, [self.questionInfo objectForKey:@"answers"]] baseURL:nil];
     }
-    
+
     self.questionView.top = SECTION_HEADER_HEIGHT;
     [self.tableView addSubview:self.questionView];
     self.answerView.top = self.questionView.bottom + SECTION_HEADER_HEIGHT;
     [self.tableView addSubview:self.answerView];
-    
+
     [self.tableView reloadData];
 }
 
@@ -99,7 +100,7 @@
     label.shadowColor = [UIColor blackColor];
     label.shadowOffset = CGSizeMake(0.0f, -1.0f);
     [bg addSubview:label];
-    return (UIView *)bg;
+    return bg;
 }
 
 #pragma mark - UITableViewDelegate
@@ -121,7 +122,7 @@
             return self.answerView.height + 10.0f;
         }
     }
-    
+
     return 54.0f;
 }
 
@@ -130,23 +131,24 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+
     if (nil == self.tableView) {
         self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
+        // FIXME height is not assignable
         self.tableView.height -= 44.0f;
         self.tableView.dataSource = self;
         self.tableView.delegate = self;
         self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         [self.view addSubview:self.tableView];
     }
-    
+
     if (nil == self.indicator) {
         self.indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
         self.indicator.frame = CGRectMake(self.tableView.width / 2 - 20.0f, self.tableView.height / 2 - 60.0f, 40.0f, 40.0f);
         [self.view addSubview:self.indicator];
         [self.indicator startAnimating];
     }
-    
+
     [SFQuestionService getQuestionDetailById:[self.params objectForKey:@"qid"] withBlock:^(NSDictionary *questionInfo, NSInteger answers, NSError *error){
         self.questionInfo = questionInfo;
         [self reloadData];
@@ -156,7 +158,7 @@
 
     [[NSNotificationCenter defaultCenter] removeObserver:self name:SFNotificationAnswerLoaded object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadData) name:SFNotificationAnswerLoaded object:nil];
-    
+
     [[NSNotificationCenter defaultCenter] removeObserver:self name:SFNotificationQuestionLoaded object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadData) name:SFNotificationQuestionLoaded object:nil];
 }

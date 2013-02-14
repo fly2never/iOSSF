@@ -11,6 +11,8 @@
 @interface SFMessager : NSObject
 
 + (void)addMessage:(NSString *)message forKey:(NSString *)key;
+
+// FIXME: unused
 + (NSString *)messageForKey:(NSString *)key;
 
 @end

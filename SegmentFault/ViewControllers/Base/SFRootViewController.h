@@ -11,6 +11,7 @@
 @interface SFRootViewController : UMViewController
 
 // 先打开另一个VC（如：登陆），再打开该VC
+// FIXME: unused
 - (void)delayOpen;
 - (void)didLogout;
 

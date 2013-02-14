@@ -48,7 +48,7 @@
 {
     static NSString *CellIdentifier = @"UMSlideNavigationControllerSlideViewCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    
+
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
 
@@ -63,7 +63,7 @@
         [bg addSubview:chevron];
         cell.backgroundView = bg;
 
-        
+
         UIImageView *selectedBg = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"slide_navigator_cell_selected_background.png"]];
         selectedBg.frame = CGRectMake(0.0f, 0.0f, 320.0f, CELL_HEIGHT);
         UIImageView *selectedChevron = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"slide_navigator_cell_selected_chevron.png"]];
@@ -74,14 +74,14 @@
         selectedChevron.layer.shadowRadius= 0.0f;
         [selectedBg addSubview:selectedChevron];
         cell.selectedBackgroundView = selectedBg;
-        
+
         cell.textLabel.font = [UIFont boldSystemFontOfSize:18.0f];
         cell.textLabel.textColor = [UIColor whiteColor];
         cell.textLabel.backgroundColor = [UIColor clearColor];
         cell.textLabel.shadowColor = [UIColor blackColor];
         cell.textLabel.shadowOffset = CGSizeMake(0.0f, -1.0f);
     }
-    
+
     cell.textLabel.text = [(UIViewController *)self.items[indexPath.section][indexPath.row] title];
 
     return cell;
@@ -141,20 +141,20 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+
     self.slideView.dataSource = self;
     self.slideView.delegate = self;
     self.slideView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.slideView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"slide_navigator_dark_backgrond.png"]];
-    
+
     if (nil == self.loadedRootViewControllers) {
         self.loadedRootViewControllers = [[NSMutableSet alloc] initWithObjects:self.items[self.currentIndex.section][self.currentIndex.row], nil];
     }
-    
+
     if (nil == self.logoutButton) {
         self.logoutButton = [[UIButton alloc] initWithFrame:CGRectMake(10.0f, self.slideView.bottom - 54.0f, 240.0f, 44.0f)];
         [self.logoutButton setBackgroundImage:[UIImage imageNamed:@"logout_btn.png"] forState:UIControlStateNormal];
-        [self.logoutButton setBackgroundImage:[UIImage imageNamed:@"logout_btn_press.png"] forState:UIControlStateHighlighted];
+        [self.logoutButton setBackgroundImage:[UIImage imageNamed:@"logout_btn_pressed.png"] forState:UIControlStateHighlighted];
         UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(10.0f, 10.0f, 220.0f, 24.0f)];
         titleLabel.textColor = [UIColor whiteColor];
         titleLabel.backgroundColor = [UIColor clearColor];
