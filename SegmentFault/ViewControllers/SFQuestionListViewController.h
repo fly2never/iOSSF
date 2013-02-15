@@ -8,7 +8,6 @@
 
 #import "SFRootViewController.h"
 
-// FIXME: SFQuestionListViewController not used
 @interface SFQuestionListViewController : SFRootViewController
 
 @property (strong, nonatomic)   NSMutableArray            *questionList;

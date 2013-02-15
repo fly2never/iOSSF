@@ -36,7 +36,7 @@
 }
 
 - (void)didLogout
-{    
+{
 }
 
 #pragma mark - parent
@@ -69,13 +69,13 @@
 {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
-    
+
     if (! [@"login" isEqualToString:[self.url host]]
         && 1 == [[self.params objectForKey:@"login"] intValue]) {
         [[NSNotificationCenter defaultCenter] removeObserver:self name:SFNotificationLogout object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didLogout) name:SFNotificationLogout object:nil];
     }
-    
+
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectZero];
     label.backgroundColor = [UIColor clearColor];
     label.font = [UIFont boldSystemFontOfSize:20.0];
@@ -84,7 +84,7 @@
     self.navigationItem.titleView = label;
     label.text = [self.params objectForKey:@"title"];
     [label sizeToFit];
-    
+
     self.navigationItem.titleView = label;
 }
 

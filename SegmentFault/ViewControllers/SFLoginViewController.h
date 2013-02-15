@@ -8,7 +8,6 @@
 
 #import "SFWebViewController.h"
 
-// FIXME: SFLoginViewController not used
 @interface SFLoginViewController : SFWebViewController
 
 @end
